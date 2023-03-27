@@ -1,26 +1,16 @@
-const express =require('express')
-const app = express()
-const cors = require('cors')
-const sqlite3 = require('sqlite3').verbose();
+const http =require('http')
+const hostname = '0.0.0.0';
+const port = 5000;
 
-
-app.use(cors())
-    app.use((req, res, next) => {
-        res.setHeader("Access-Control-Allow-Origin","*");
-        next();
-    })
-
-
-app.use(express.json({limit:'10mb'}))
-let db = new sqlite3.Database('data.db', (err)=>{
-    if (err) { console.log(err.message)
-        console.log('conected to the database ')
-}})
-
-app.post('/valPass' , (req, res) =>{
+const server =http.createServer((req,res)=>{
+  res.statusCode =200;
+  res.setHeader("Access-Control-Allow-Origin","*");
+});
+    const passs = 'admin';
+    const userr = 'admin';
+server.post('/valPass' , (req, res) =>{
     const {user, pass} =req.body
-    db.all(`SELECT * FROM login WHERE user='${user}' AND pass = '${pass}' `, (err, rows)=>{
-        if(err){
+        if(passs = '${pass}' && userr='${user}'){
             throw err;
         }
         if(rows.length >0){
@@ -33,4 +23,6 @@ app.post('/valPass' , (req, res) =>{
 
 
 
-app.listen(5000, ()=> {console.log("server started in port 5000 ") })
+server.listen(port, hostname, () => {
+    console.log(`Server run at http://${hostname}:${port}/`)
+})
