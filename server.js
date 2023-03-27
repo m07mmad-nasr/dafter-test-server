@@ -10,7 +10,7 @@ const server =http.createServer((req,res)=>{
     const userr = 'admin';
 server.post('/valPass' , (req, res) =>{
     const {user, pass} =req.body
-        if(passs = '${pass}' && userr='${user}'){
+        if(pass == '${passs}' && user=='${userr}'){
             throw err;
         }
         if(rows.length >0){
@@ -19,7 +19,7 @@ server.post('/valPass' , (req, res) =>{
             res.send({validation:false})
         }
     })
-})
+
 
 
 
